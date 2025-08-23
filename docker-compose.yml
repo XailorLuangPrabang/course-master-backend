@@ -6,29 +6,28 @@ services:
     container_name: master_backend_sailor
     restart: always
     ports:
-      - "3003:3000" # Host port 3000 → Container port 3000
-    depends_on:
-      - db_sailor # Wait for 'db' container to start
+      - "3003:3080" # Host port 3000 → Container port 3000
+    # depends_on:
+    #  - db_sailor # Wait for 'db' container to start
     env_file:
       - .env # Load environment variables from .env
-    networks:
-      - master_network_sailor # Connect to custom network
-
-  db_sailor:
-    image: mysql:8.0
-    container_name: master_backend_db_sailor
-    ports:
-      - "3309:3306" # Host port 3306 → Container port 3306
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456 # Root password for MySQL
-      MYSQL_DATABASE: master_backend # Auto-create this database
-    volumes:
-      - ../master_data:/var/lib/mysql # Persist database data locally
-    restart: unless-stopped
-    networks:
-      - master_network_sailor # Connect to same custom network
+  #  networks:
+  #- master_network_sailor # Connect to custom network
+# db_sailor:
+#    image: mysql:8.0
+#    container_name: master_backend_db_sailor
+#   ports:
+#     - "3309:3306" # Host port 3306 → Container port 3306
+#   environment:
+#     MYSQL_ROOT_PASSWORD: 123456 # Root password for MySQL
+#    MYSQL_DATABASE: master_backend # Auto-create this database
+#    volumes:
+#    - ../master_data:/var/lib/mysql # Persist database data locally
+#    restart: unless-stopped
+#  networks:
+#    - master_network_sailor # Connect to same custom network
 
 # Custom network definition
-networks:
-  master_network_sailor:
-    driver: bridge # Default network type for container-to-container communication
+#networks:
+#  master_network_sailor:
+#  driver: bridge # Default network type for container-to-container communication
