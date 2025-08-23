@@ -23,7 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: 123456 # Root password for MySQL
       MYSQL_DATABASE: master_backend # Auto-create this database
     volumes:
-      - ./db_data:/var/lib/mysql # Persist database data locally
+      - ../master_data:/var/lib/mysql # Persist database data locally
     restart: unless-stopped
     networks:
       - master_network # Connect to same custom network

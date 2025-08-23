@@ -12,7 +12,7 @@ doenv.config();
 
 const startServer = async () => {
   const app = express();
-  const PORT = process.env.PORT || 4000;
+  const PORT = process.env.PORT || 3080;
 
   app.use(express.json());
 
