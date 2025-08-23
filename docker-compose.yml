@@ -1,24 +1,24 @@
 version: "3.8"
 
 services:
-  master_backend:
+  master_backend_sailor:
     build: .
     container_name: master_backend_sailor
     restart: always
     ports:
-      - "3001:3000" # Host port 3000 → Container port 3000
+      - "3003:3000" # Host port 3000 → Container port 3000
     depends_on:
-      - db # Wait for 'db' container to start
+      - db_sailor # Wait for 'db' container to start
     env_file:
       - .env # Load environment variables from .env
     networks:
       - master_network_sailor # Connect to custom network
 
-  db:
+  db_sailor:
     image: mysql:8.0
     container_name: master_backend_db_sailor
     ports:
-      - "3322:3306" # Host port 3306 → Container port 3306
+      - "3309:3306" # Host port 3306 → Container port 3306
     environment:
       MYSQL_ROOT_PASSWORD: 123456 # Root password for MySQL
       MYSQL_DATABASE: master_backend # Auto-create this database
